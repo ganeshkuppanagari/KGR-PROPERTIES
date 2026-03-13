@@ -1,0 +1,16 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Folders to ignore
+node_modules/
+dist/
+build/
+.env
+.DS_Store
