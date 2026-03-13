@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KGR Properties – Premium Land & Buildings Near Tirupati</title>
+  <meta name="description" content="KGR Properties offers premium land, plots, houses and commercial buildings for sale near Tirupati, Srikalahasti, Venkatagiri, Renigunta, Chandragiri and Yerpedu." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===== INTRO ANIMATION OVERLAY ===== -->
+  <div id="intro-overlay">
+    <div class="intro-bg"></div>
+    <div class="intro-content">
+      <div class="intro-text-wrap">
+        <span class="intro-from" id="intro-from">Land &amp; Buildings</span>
+        <span class="intro-to" id="intro-to">KGR PROPERTIES</span>
+      </div>
+      <div class="intro-tagline" id="intro-tagline">Your Trusted Real Estate Partner in Tirupati Region</div>
+      <div class="intro-bar"><div class="intro-bar-fill" id="intro-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/kgr_logo_1773396572407.png" alt="KGR Properties Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">KGR PROPERTIES</span>
+          <span class="logo-sub">Premium Real Estate</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="properties.html"><i class="fa fa-building"></i> Properties</a></li>
+        <li><a href="locations.html"><i class="fa fa-map-marker-alt"></i> Locations</a></li>
+
+        <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+        <li><a href="admin-login.html" class="admin-nav-btn" title="Admin Dashboard"><i class="fa fa-user-shield"></i></a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION WITH VIDEO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-video-wrap">
+      <div id="yt-player"></div>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa fa-star"></i> Trusted Since 2010 <i class="fa fa-star"></i></div>
+      <h1 class="hero-title">Find Your Dream<br /><span class="gold-text">Property in Tirupati</span></h1>
+      <p class="hero-subtitle">Premium Land, Plots, Villas & Commercial Properties near the holy city of Tirupati, Andhra Pradesh</p>
+      <div class="hero-search">
+        <div class="search-row">
+          <select id="hero-location" class="search-select">
+            <option value="">Select Location</option>
+            <option value="tirupati">Tirupati</option>
+            <option value="srikalahasti">Srikalahasti</option>
+            <option value="venkatagiri">Venkatagiri</option>
+            <option value="renigunta">Renigunta</option>
+            <option value="chandragiri">Chandragiri</option>
+            <option value="yerpedu">Yerpedu</option>
+          </select>
+          <select id="hero-type" class="search-select">
+            <option value="">Property Type</option>
+            <option value="Land">Land / Plot</option>
+            <option value="Building">Building</option>
+            <option value="House">House / Villa</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+          <select id="hero-budget" class="search-select">
+            <option value="">Budget Range</option>
+            <option value="5">Under ₹5 Lakhs</option>
+            <option value="20">₹5L – ₹20 Lakhs</option>
+            <option value="50">₹20L – ₹50 Lakhs</option>
+            <option value="100">₹50L – ₹1 Crore</option>
+            <option value="999">Above ₹1 Crore</option>
+          </select>
+          <button class="btn-search" onclick="heroSearch()"><i class="fa fa-search"></i> Search</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num" data-target="500">0</span><span>+</span><p>Properties Listed</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-num" data-target="1200">0</span><span>+</span><p>Happy Clients</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-num" data-target="6">0</span><span></span><p>Locations Covered</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-num" data-target="15">0</span><span>+</span><p>Years Experience</p></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to Explore</span>
+      <div class="scroll-arrow"><i class="fa fa-chevron-down"></i></div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section class="why-us section-pad">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Why KGR Properties</span>
+        <h2>Your Trusted Real Estate <span class="gold-text">Partner</span></h2>
+        <p>We bring you the best properties with complete transparency, legal clarity and professional service</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fa fa-shield-alt"></i></div>
+          <h3>100% Legal Properties</h3>
+          <p>All properties are thoroughly verified with complete legal documentation and clear titles</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fa fa-hand-holding-usd"></i></div>
+          <h3>Best Market Prices</h3>
+          <p>We offer competitive prices with direct owner deals, eliminating middlemen costs</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fa fa-map-marked-alt"></i></div>
+          <h3>Prime Locations</h3>
+          <p>Carefully selected properties in high-growth areas near Tirupati with excellent connectivity</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon"><i class="fa fa-headset"></i></div>
+          <h3>24/7 Support</h3>
+          <p>Our dedicated team provides round-the-clock assistance for all your property needs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOCATIONS SECTION ===== -->
+  <section class="locations section-pad" id="locations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa fa-map-marker-alt"></i> Explore</span>
+        <h2>Places Near <span class="gold-text">Tirupati</span></h2>
+        <p>Discover prime real estate opportunities across the Tirupati region's fastest growing localities</p>
+      </div>
+      <div class="locations-grid">
+        <!-- Tirupati -->
+        <div class="location-card animate-on-scroll" onclick="goToLocation('tirupati')">
+          <div class="loc-img-wrap">
+            <img src="images/tirupati_city_1773396609510.png" alt="Tirupati" />
+            <div class="loc-overlay">
+              <button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="loc-badge">Most Popular</div>
+          </div>
+          <div class="loc-body">
+            <h3><i class="fa fa-map-marker-alt gold-text"></i> Tirupati</h3>
+            <p>The spiritual capital of Andhra Pradesh, home to the famous Tirumala temple. Experience booming real estate with excellent infrastructure and connectivity.</p>
+            <div class="loc-meta">
+              <span><i class="fa fa-building"></i> 120+ Properties</span>
+              <span><i class="fa fa-rupee-sign"></i> From ₹8L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Srikalahasti -->
+        <div class="location-card animate-on-scroll" onclick="goToLocation('srikalahasti')">
+          <div class="loc-img-wrap">
+            <img src="images/srikalahasti_img_1773396631491.png" alt="Srikalahasti" />
+            <div class="loc-overlay">
+              <button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="loc-body">
+            <h3><i class="fa fa-map-marker-alt gold-text"></i> Srikalahasti</h3>
+            <p>A divine town with the famous Kalahastisvara temple. Growing real estate hotspot with affordable plots and excellent road connectivity to Tirupati.</p>
+            <div class="loc-meta">
+              <span><i class="fa fa-building"></i> 85+ Properties</span>
+              <span><i class="fa fa-rupee-sign"></i> From ₹5L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Venkatagiri -->
+        <div class="location-card animate-on-scroll" onclick="goToLocation('venkatagiri')">
+          <div class="loc-img-wrap">
+            <img src="images/venkatagiri_img_1773396647069.png" alt="Venkatagiri" />
+            <div class="loc-overlay">
+              <button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="loc-body">
+            <h3><i class="fa fa-map-marker-alt gold-text"></i> Venkatagiri</h3>
+            <p>Historic town known for its silk weaving. Peaceful surroundings with emerging residential developments and investment-worthy agricultural lands.</p>
+            <div class="loc-meta">
+              <span><i class="fa fa-building"></i> 60+ Properties</span>
+              <span><i class="fa fa-rupee-sign"></i> From ₹3L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Renigunta -->
+        <div class="location-card animate-on-scroll" onclick="goToLocation('renigunta')">
+          <div class="loc-img-wrap">
+            <img src="images/renigunta_img_1773396663155.png" alt="Renigunta" />
+            <div class="loc-overlay">
+              <button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="loc-badge badge-blue">Airport Zone</div>
+          </div>
+          <div class="loc-body">
+            <h3><i class="fa fa-map-marker-alt gold-text"></i> Renigunta</h3>
+            <p>Home to Tirupati International Airport. High commercial value area with excellent highway connectivity, industrial development and rapidly appreciating land prices.</p>
+            <div class="loc-meta">
+              <span><i class="fa fa-building"></i> 95+ Properties</span>
+              <span><i class="fa fa-rupee-sign"></i> From ₹12L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chandragiri -->
+        <div class="location-card animate-on-scroll" onclick="goToLocation('chandragiri')">
+          <div class="loc-img-wrap">
+            <img src="images/chandragiri_img_1773396680370.png" alt="Chandragiri" />
+            <div class="loc-overlay">
+              <button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="loc-body">
+            <h3><i class="fa fa-map-marker-alt gold-text"></i> Chandragiri</h3>
+            <p>Ancient town with historic fort and palace. Serene environment with affordable plots and villas, ideal for premium residential projects and tourism investments.</p>
+            <div class="loc-meta">
+              <span><i class="fa fa-building"></i> 45+ Properties</span>
+              <span><i class="fa fa-rupee-sign"></i> From ₹4L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yerpedu -->
+        <div class="location-card animate-on-scroll" onclick="goToLocation('yerpedu')">
+          <div class="loc-img-wrap">
+            <img src="images/yerpedu_img_1773396696716.png" alt="Yerpedu" />
+            <div class="loc-overlay">
+              <button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="loc-body">
+            <h3><i class="fa fa-map-marker-alt gold-text"></i> Yerpedu</h3>
+            <p>Emerging suburb along the Tirupati–Chennai highway. Excellent investment potential with developing infrastructure, affordable land rates and high future appreciation.</p>
+            <div class="loc-meta">
+              <span><i class="fa fa-building"></i> 50+ Properties</span>
+              <span><i class="fa fa-rupee-sign"></i> From ₹3.5L</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PROPERTIES ===== -->
+  <section class="featured-props section-pad dark-section" id="properties">
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-badge">Hand-Picked</span>
+        <h2>Featured <span class="gold-text">Properties</span></h2>
+        <p>Explore our premium listings across the Tirupati region</p>
+      </div>
+      <div class="prop-grid" id="featured-grid">
+        <!-- Populated by JS -->
+      </div>
+      <div class="center-btn">
+        <a href="properties.html" class="btn-gold-outline"><i class="fa fa-th-large"></i> View All Properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials section-pad">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Happy Clients</span>
+        <h2>What Our Clients <span class="gold-text">Say</span></h2>
+      </div>
+      <div class="testimonial-slider">
+        <div class="testimonial-track" id="test-track">
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"KGR Properties helped us find the perfect plot in Tirupati. The process was transparent, legal documents were clear, and their team guided us throughout."</p>
+            <div class="test-author">
+              <div class="test-avatar">SR</div>
+              <div><strong>Suresh Reddy</strong><span>Tirupati</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"Excellent service! Got a beautiful house near Srikalahasti at the best price. The WhatsApp support was instant and very helpful."</p>
+            <div class="test-author">
+              <div class="test-avatar">LP</div>
+              <div><strong>Lakshmi Prasad</strong><span>Srikalahasti</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i></div>
+            <p>"We invested in commercial land near Renigunta Airport. KGR's guidance on location selection was invaluable. Our investment has already appreciated 40%."</p>
+            <div class="test-author">
+              <div class="test-avatar">VK</div>
+              <div><strong>Venkat Kumar</strong><span>Renigunta</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"The team at KGR is professional and trustworthy. They helped us purchase agricultural land in Chandragiri with all legal formalities handled perfectly."</p>
+            <div class="test-author">
+              <div class="test-avatar">NM</div>
+              <div><strong>Narayana Murthy</strong><span>Chandragiri</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"Highly reliable service. We purchased a one-acre plot in Yerpedu. The pricing was fair and the registration process was completely hassle-free."</p>
+            <div class="test-author">
+              <div class="test-avatar">AK</div>
+              <div><strong>Arun Kumar</strong><span>Yerpedu</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"Finding a reliable real estate partner in Tirupati was easy with KGR. Their transparency regarding documentation is what impressed me the most."</p>
+            <div class="test-author">
+              <div class="test-avatar">SG</div>
+              <div><strong>Sowmya G.</strong><span>Tirupati</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"I was looking for a residential site in Venkatagiri for months. KGR Properties found me the best deal in a gated community within a week."</p>
+            <div class="test-author">
+              <div class="test-avatar">RV</div>
+              <div><strong>Rajesh V.</strong><span>Venkatagiri</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"Professional approach and deep local market knowledge. They helped me navigate the investment opportunities near Srikalahasti efficiently."</p>
+            <div class="test-author">
+              <div class="test-avatar">MR</div>
+              <div><strong>Madhav Rao</strong><span>Srikalahasti</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>"Purchased my first plot near Renigunta Airport through KGR. The team is very supportive and handles all the paperwork with great care."</p>
+            <div class="test-author">
+              <div class="test-avatar">PS</div>
+              <div><strong>Priyanka S.</strong><span>Renigunta</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slider-btns">
+          <button onclick="prevTest()" class="slider-btn"><i class="fa fa-chevron-left"></i></button>
+          <button onclick="nextTest()" class="slider-btn"><i class="fa fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Find Your <span class="gold-text">Dream Property?</span></h2>
+        <p>Talk to our experts today – free consultation, no obligations</p>
+        <div class="cta-btns">
+          <a href="tel:+918790283230" class="btn-gold"><i class="fa fa-phone"></i> Call Now</a>
+          <a href="https://wa.me/918790283230?text=Hello%20KGR%20Properties%2C%20I%20am%20interested%20in%20properties%20near%20Tirupati" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+          <a href="contact.html" class="btn-outline-white"><i class="fa fa-envelope"></i> Send Enquiry</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/kgr_logo_1773396572407.png" alt="KGR Logo" class="footer-logo" />
+          <h3>KGR PROPERTIES</h3>
+          <p>Your trusted real estate partner for premium land, plots, houses & commercial buildings in the Tirupati region since 2010.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="locations.html">Locations</a></li>
+
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="admin-login.html" style="font-size: 11px; opacity: 0.5;">Admin Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="location-detail.html?loc=tirupati">Tirupati</a></li>
+            <li><a href="location-detail.html?loc=srikalahasti">Srikalahasti</a></li>
+            <li><a href="location-detail.html?loc=venkatagiri">Venkatagiri</a></li>
+            <li><a href="location-detail.html?loc=renigunta">Renigunta</a></li>
+            <li><a href="location-detail.html?loc=chandragiri">Chandragiri</a></li>
+            <li><a href="location-detail.html?loc=yerpedu">Yerpedu</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <p><i class="fa fa-map-marker-alt"></i> MG Road, Tirupati – 517501, Andhra Pradesh</p>
+            <p><i class="fa fa-phone"></i> <a href="tel:+918790283230">+91 87902 83230</a></p>
+            <p><i class="fa fa-envelope"></i> <a href="mailto:kgrproperties@gmail.com">kgrproperties@gmail.com</a></p>
+            <p><i class="fa fa-clock"></i> Mon–Sat: 9AM – 7PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 KGR Properties. All rights reserved. | Designed with <i class="fa fa-heart gold-text"></i> for Tirupati Region</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <a href="https://wa.me/918790283230?text=Hello%20KGR%20Properties%2C%20I%20am%20interested%20in%20properties%20near%20Tirupati" target="_blank" class="whatsapp-float" id="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-tooltip">Chat with us!</span>
+  </a>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

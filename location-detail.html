@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Location Properties – KGR Properties</title>
+  <meta name="description" content="Browse properties available in specific locations near Tirupati by KGR Properties." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/kgr_logo_1773396572407.png" alt="KGR Properties Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">KGR PROPERTIES</span>
+          <span class="logo-sub">Premium Real Estate</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="properties.html"><i class="fa fa-building"></i> Properties</a></li>
+        <li><a href="locations.html" class="active"><i class="fa fa-map-marker-alt"></i> Locations</a></li>
+
+        <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+        <li><a href="admin-login.html" class="admin-nav-btn" title="Admin Dashboard"><i class="fa fa-user-shield"></i></a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO (dynamically filled) -->
+  <section class="page-hero" id="loc-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a><i class="fa fa-chevron-right"></i>
+          <a href="locations.html">Locations</a><i class="fa fa-chevron-right"></i>
+          <span id="hero-loc-name">Location</span>
+        </div>
+        <h1 id="hero-title">Properties in <span class="gold-text" id="hero-title-loc">Location</span></h1>
+        <p id="hero-desc">Explore available properties</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION INFO CARD -->
+  <section style="background:var(--navy); padding:48px 0;">
+    <div class="container">
+      <div id="loc-info-card" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;">
+        <div>
+          <img id="loc-big-img" src="" alt="Location" style="width:100%; border-radius:16px; height:300px; object-fit:cover;" />
+        </div>
+        <div>
+          <h2 id="loc-info-title" style="color:var(--gold-light); font-size:32px; margin-bottom:16px;"></h2>
+          <p id="loc-info-desc" style="color:rgba(255,255,255,0.7); font-size:16px; line-height:1.8; margin-bottom:24px;"></p>
+          <div class="map-embed">
+            <iframe id="loc-map" src="" allowfullscreen loading="lazy" title="Location Map"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPERTIES SECTION -->
+  <section class="section-pad" style="background:var(--off-white)">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Available Now</span>
+        <h2>Properties in <span class="gold-text" id="props-title-loc">Location</span></h2>
+        <p>Browse our curated selection of properties in this area</p>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select class="filter-select" id="f-type">
+            <option value="">All Types</option>
+            <option value="Land">Land / Plot</option>
+            <option value="House">House / Villa</option>
+            <option value="Building">Building</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Max Budget (Lakhs)</label>
+          <select class="filter-select" id="f-budget">
+            <option value="">Any Budget</option>
+            <option value="5">Under ₹5L</option>
+            <option value="20">Under ₹20L</option>
+            <option value="50">Under ₹50L</option>
+            <option value="100">Under ₹1 Crore</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" class="filter-input" id="f-search" placeholder="Search by title..." />
+        </div>
+        <button class="btn-filter" onclick="applyFilters()"><i class="fa fa-filter"></i> Filter</button>
+        <button class="btn-filter-reset" onclick="resetFilters()"><i class="fa fa-times"></i> Reset</button>
+      </div>
+
+      <div class="results-count" id="results-count"></div>
+      <div class="prop-grid" id="props-grid"></div>
+
+      <div class="center-btn" style="margin-top:48px;">
+        <a href="contact.html" class="btn-gold"><i class="fa fa-phone"></i> Enquire About This Location</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="images/kgr_logo_1773396572407.png" alt="KGR Logo" class="footer-logo" /><h3>KGR PROPERTIES</h3><p>Your trusted real estate partner since 2010.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="properties.html">All Properties</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin-login.html" style="font-size: 10px; opacity: 0.5;">Admin</a></li></ul></div>
+        <div class="footer-col"><h4>Locations</h4><ul><li><a href="location-detail.html?loc=tirupati">Tirupati</a></li><li><a href="location-detail.html?loc=srikalahasti">Srikalahasti</a></li><li><a href="location-detail.html?loc=renigunta">Renigunta</a></li><li><a href="location-detail.html?loc=chandragiri">Chandragiri</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><div class="footer-contact"><p><i class="fa fa-phone"></i><a href="tel:+918790283230">+91 87902 83230</a></p><p><i class="fa fa-envelope"></i><a href="mailto:kgrproperties@gmail.com">kgrproperties@gmail.com</a></p></div></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 KGR Properties. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918790283230" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with us!</span></a>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const LOC_DATA = {
+      tirupati: {
+        name: 'Tirupati', desc: 'The spiritual capital of Andhra Pradesh. Booming real estate with excellent infrastructure. Home to the famous Tirumala Venkateswara Temple, attracting millions of pilgrims annually.',
+        longDesc: 'Tirupati is one of the fastest-growing cities in Andhra Pradesh, driven by its religious significance, improving infrastructure, and growing IT sector. Real estate here offers excellent returns with both residential and commercial opportunities.',
+        img: 'images/tirupati_city_1773396609510.png',
+        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.38!3d13.63!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d4b5fee0d8b6d%3A0x4be23c9fd07e3f8b!2sTirupati!5e0!3m2!1sen!2sin!4v1700000001'
+      },
+      srikalahasti: {
+        name: 'Srikalahasti', desc: 'Famous for the Kalahastisvara temple. Growing hotspot with affordable plots and excellent connectivity to Tirupati and Chennai.',
+        longDesc: 'Srikalahasti is a historic temple town 36km from Tirupati. With ongoing highway improvements and proximity to SPSR Nellore district, it offers excellent investment potential with affordable land rates poised for appreciation.',
+        img: 'images/srikalahasti_img_1773396631491.png',
+        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.70!3d13.64!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4cc5!2sSrikalahasti!5e0!3m2!1sen!2sin!4v1700000002'
+      },
+      venkatagiri: {
+        name: 'Venkatagiri', desc: 'Known for silk weaving and lush landscapes. Emerging residential and agricultural real estate with future appreciation potential.',
+        longDesc: 'Venkatagiri, the silk town of Andhra Pradesh, is 70km from Tirupati. With APIIC industrial developments nearby and NH connectivity, agricultural and residential land here is emerging as a strong investment choice.',
+        img: 'images/venkatagiri_img_1773396647069.png',
+        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.57!3d13.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d!2sVenkatagiri!5e0!3m2!1sen!2sin!4v1700000003'
+      },
+      renigunta: {
+        name: 'Renigunta', desc: 'Home to Tirupati International Airport. High commercial value with excellent highway connectivity and rapidly appreciating land prices.',
+        longDesc: 'Renigunta is strategically positioned at the junction of major highways and home to Tirupati International Airport. Commercial, industrial and residential properties here command premium prices with strong appreciation driven by airport expansion and logistics parks.',
+        img: 'images/renigunta_img_1773396663155.png',
+        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.51!3d13.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d!2sRenigunta!5e0!3m2!1sen!2sin!4v1700000004'
+      },
+      chandragiri: {
+        name: 'Chandragiri', desc: 'Historic town with scenic fort. Peaceful surroundings with affordable plots ideal for premium residential and tourism investments.',
+        longDesc: 'Chandragiri, located 11km from Tirupati, is known for its magnificent 16th-century fort. The town offers a peaceful getaway with excellent highway connectivity, making it ideal for villas, farmhouses and residential projects.',
+        img: 'images/chandragiri_img_1773396680370.png',
+        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.31!3d13.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d!2sChandragiri!5e0!3m2!1sen!2sin!4v1700000005'
+      },
+      yerpedu: {
+        name: 'Yerpedu', desc: 'Emerging suburb on Tirupati–Chennai highway. Budget-friendly plots with high future appreciation for savvy investors.',
+        longDesc: 'Yerpedu is a rapidly developing suburb along the Tirupati–Chennai National Highway. With upcoming TIDCO housing projects and industrial expansion, land prices here are expected to appreciate significantly over the next 5 years.',
+        img: 'images/yerpedu_img_1773396696716.png',
+        mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.42!3d13.70!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d!2sYerpedu!5e0!3m2!1sen!2sin!4v1700000006'
+      }
+    };
+
+    let currentLoc = '';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      initNavbar();
+      initScrollAnimations();
+      const params = new URLSearchParams(window.location.search);
+      currentLoc = params.get('loc') || 'tirupati';
+      const data = LOC_DATA[currentLoc] || LOC_DATA['tirupati'];
+ 
+      // Fill hero
+      document.getElementById('hero-loc-name').textContent = data.name;
+      document.getElementById('hero-title-loc').textContent = data.name;
+      document.getElementById('props-title-loc').textContent = data.name;
+      document.getElementById('hero-desc').textContent = data.desc;
+      document.getElementById('loc-info-title').textContent = data.name;
+      document.getElementById('loc-info-desc').textContent = data.longDesc;
+      document.getElementById('loc-big-img').src = data.img;
+      document.getElementById('loc-big-img').alt = data.name;
+      document.getElementById('loc-map').src = data.mapSrc;
+      document.title = `${data.name} Properties – KGR Properties`;
+ 
+      await renderProps();
+    });
+ 
+    async function renderProps(filtered) {
+      const grid = document.getElementById('props-grid');
+      const count = document.getElementById('results-count');
+      
+      let all;
+      if (filtered !== undefined) {
+        all = filtered;
+      } else {
+        if (typeof fetchProperties === 'function') {
+          all = await fetchProperties({ location: currentLoc });
+        } else {
+          all = getProperties().filter(p => p.location === currentLoc);
+        }
+      }
+      count.innerHTML = `Showing <strong>${all.length}</strong> propert${all.length === 1 ? 'y' : 'ies'} in <strong>${LOC_DATA[currentLoc]?.name || currentLoc}</strong>`;
+      if (all.length === 0) {
+        grid.innerHTML = `<div class="no-results"><i class="fa fa-search-minus"></i><h3>No properties found</h3><p>Try adjusting your filters or <a href="contact.html" style="color:var(--gold)">contact us</a> for listings not yet on the website.</p></div>`;
+        return;
+      }
+      grid.innerHTML = all.map(p => propCardHTML(p)).join('');
+      initScrollAnimations();
+    }
+
+    async function applyFilters() {
+      const type = document.getElementById('f-type').value;
+      const budget = parseFloat(document.getElementById('f-budget').value) || Infinity;
+      const search = document.getElementById('f-search').value.toLowerCase();
+      
+      let props;
+      if (typeof fetchProperties === 'function') {
+        props = await fetchProperties({ location: currentLoc, type: type || undefined });
+      } else {
+        props = getProperties().filter(p => p.location === currentLoc);
+        if (type) props = props.filter(p => p.type === type);
+      }
+      
+      if (budget !== Infinity) props = props.filter(p => p.priceNum <= budget);
+      if (search) props = props.filter(p => p.title.toLowerCase().includes(search));
+      await renderProps(props);
+    }
+ 
+    async function resetFilters() {
+      document.getElementById('f-type').value = '';
+      document.getElementById('f-budget').value = '';
+      document.getElementById('f-search').value = '';
+      await renderProps();
+    }
+  </script>
+  <style>
+    .prop-card { background: var(--white); border-color: var(--light-gray); }
+    .prop-title { color: var(--navy); }
+    .prop-loc { color: var(--gray); }
+    .prop-detail { color: var(--gray); }
+    .btn-contact { color: var(--navy-mid); border-color: rgba(13,27,42,0.2); background: var(--off-white); }
+    .btn-contact:hover { background: var(--light-gray); }
+    @media(max-width:768px){ #loc-info-card { grid-template-columns:1fr !important; } }
+  </style>
+</body>
+</html>

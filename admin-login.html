@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login – KGR Properties</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --gold: #c9a84c; --gold-light: #e8c76b; --gold-dark: #a07830;
+      --navy: #0d1b2a; --navy-mid: #1b2d45; --navy-light: #243555;
+      --white: #ffffff; --off-white: #f8f6f0;
+      --error: #ef4444; --success: #10b981;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; }
+
+    body {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--navy);
+      position: relative; overflow: hidden;
+    }
+
+    /* Animated background */
+    .bg-layer {
+      position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b2d45 50%, #0d1b2a 100%);
+    }
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 1;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .bg-glow {
+      position: fixed; z-index: 1;
+      border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    .glow-1 {
+      width: 500px; height: 500px;
+      background: rgba(201,168,76,0.08);
+      top: -100px; left: -100px;
+      animation: floatGlow 8s ease-in-out infinite;
+    }
+    .glow-2 {
+      width: 400px; height: 400px;
+      background: rgba(36,53,85,0.6);
+      bottom: -80px; right: -80px;
+      animation: floatGlow 10s ease-in-out infinite reverse;
+    }
+    .glow-3 {
+      width: 300px; height: 300px;
+      background: rgba(201,168,76,0.05);
+      top: 50%; right: 10%;
+      animation: floatGlow 12s ease-in-out infinite 2s;
+    }
+
+    /* Floating particles */
+    .particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+    .particle {
+      position: absolute; width: 4px; height: 4px;
+      background: rgba(201,168,76,0.4); border-radius: 50%;
+      animation: particleFloat linear infinite;
+    }
+
+    /* Login card */
+    .login-wrap {
+      position: relative; z-index: 10;
+      width: 100%; max-width: 460px;
+      padding: 20px;
+    }
+    .login-card {
+      background: rgba(27,45,69,0.7);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 24px;
+      padding: 48px 44px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+      animation: cardEntrance 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+
+    /* Logo */
+    .login-logo {
+      text-align: center; margin-bottom: 36px;
+    }
+    .logo-icon {
+      width: 72px; height: 72px; border-radius: 16px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 28px; color: var(--navy);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.4);
+      position: relative;
+    }
+    .logo-icon::after {
+      content: ''; position: absolute; inset: -4px;
+      border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+    .login-logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; color: var(--gold-light);
+      letter-spacing: 3px; margin-bottom: 4px;
+    }
+    .login-logo p { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; }
+
+    /* Admin badge */
+    .admin-badge {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 99px; padding: 8px 20px;
+      margin-bottom: 32px;
+      font-size: 12px; font-weight: 700;
+      color: var(--gold-light); letter-spacing: 2px; text-transform: uppercase;
+    }
+    .admin-badge i { font-size: 11px; }
+
+    /* Form */
+    .form-group {
+      display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;
+    }
+    .form-label {
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .input-wrap {
+      position: relative;
+    }
+    .input-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: rgba(255,255,255,0.3); font-size: 15px;
+      transition: color 0.3s;
+    }
+    .form-input {
+      width: 100%; background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      color: var(--white); padding: 14px 16px 14px 46px;
+      border-radius: 12px; font-size: 15px; font-family: 'Inter', sans-serif;
+      outline: none; transition: all 0.3s;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.25); }
+    .form-input:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+      box-shadow: 0 0 0 4px rgba(201,168,76,0.1);
+    }
+    .form-input:focus ~ .input-icon,
+    .input-wrap:focus-within .input-icon { color: var(--gold); }
+    .toggle-pw {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.3); font-size: 15px;
+      transition: color 0.3s; padding: 4px;
+    }
+    .toggle-pw:hover { color: var(--gold); }
+
+    /* Remember + forgot */
+    .form-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px; margin-top: -4px;
+    }
+    .remember-wrap {
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .remember-wrap input[type=checkbox] {
+      width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer;
+    }
+    .remember-wrap span { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .forgot-link { font-size: 13px; color: var(--gold); cursor: pointer; }
+    .forgot-link:hover { color: var(--gold-light); }
+
+    /* Error */
+    .error-box {
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.4);
+      color: #fca5a5; border-radius: 10px;
+      padding: 12px 16px; font-size: 13px;
+      display: none; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .error-box.hidden { display: none; }
+    .error-box i { font-size: 15px; color: #ef4444; }
+
+    /* Submit btn */
+    .btn-login {
+      width: 100%; background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+      color: var(--navy); border: none; padding: 16px;
+      border-radius: 12px; font-weight: 800; font-size: 15px;
+      cursor: pointer; transition: all 0.3s;
+      letter-spacing: 1px; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-login:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.5);
+    }
+    .btn-login:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+    .btn-login .spinner { display: none; }
+    .btn-login.loading .spinner { display: inline-block; }
+    .btn-login.loading .btn-text { display: none; }
+
+    /* Back link */
+    .back-link {
+      text-align: center; margin-top: 24px;
+    }
+    .back-link a {
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      text-decoration: none; transition: color 0.3s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .back-link a:hover { color: rgba(255,255,255,0.7); }
+
+    /* Divider */
+    .divider {
+      display: flex; align-items: center; gap: 16px; margin: 28px 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+    .divider-text { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Demo hint */
+    .demo-hint {
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 10px; padding: 14px 16px;
+      font-size: 12px; color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+    .demo-hint strong { color: #6ee7b7; }
+
+    /* Animations */
+    @keyframes cardEntrance {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes floatGlow {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(30px, -20px); }
+      66% { transform: translate(-20px, 15px); }
+    }
+    @keyframes particleFloat {
+      0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .fa-spinner { animation: spin 0.8s linear infinite; }
+  </style>
+</head>
+<body>
+
+  <!-- Background Layers -->
+  <div class="bg-layer"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Login Card -->
+  <div class="login-wrap">
+    <div class="login-card">
+
+      <!-- Logo -->
+      <div class="login-logo">
+        <div class="logo-icon"><i class="fa fa-building"></i></div>
+        <h1>KGR PROPERTIES</h1>
+        <p>Premium Real Estate</p>
+      </div>
+
+      <!-- Badge -->
+      <div class="admin-badge">
+        <i class="fa fa-shield-alt"></i> Admin Control Panel
+      </div>
+
+      <!-- Error Box -->
+      <div class="error-box hidden" id="error-box">
+        <i class="fa fa-exclamation-circle"></i>
+        <span id="error-msg">Invalid credentials. Please try again.</span>
+      </div>
+
+      <!-- Form -->
+      <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+
+        <!-- Username -->
+        <div class="form-group">
+          <label class="form-label" for="username">Username</label>
+          <div class="input-wrap">
+            <i class="fa fa-user input-icon"></i>
+            <input
+              type="text" id="username" class="form-input"
+              placeholder="Enter admin username"
+              autocomplete="username" required
+            />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-wrap">
+            <i class="fa fa-lock input-icon"></i>
+            <input
+              type="password" id="password" class="form-input"
+              placeholder="Enter your password"
+              autocomplete="current-password" required
+            />
+            <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Toggle password visibility" onclick="togglePassword()">
+              <i class="fa fa-eye" id="pw-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember + Forgot -->
+        <div class="form-meta">
+          <label class="remember-wrap">
+            <input type="checkbox" id="remember-me" />
+            <span>Remember me</span>
+          </label>
+          <span class="forgot-link" onclick="showForgot()">Forgot password?</span>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="btn-login" id="login-btn">
+          <span class="btn-text"><i class="fa fa-sign-in-alt"></i> Sign In to Dashboard</span>
+          <span class="spinner"><i class="fa fa-spinner"></i> &nbsp;Verifying...</span>
+        </button>
+      </form>
+
+
+
+      <!-- Back to site -->
+      <div class="back-link">
+        <a href="index.html"><i class="fa fa-arrow-left"></i> Back to Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin-auth.js"></script>
+  <script>
+    // Redirect if already logged in
+    if (sessionStorage.getItem('kgr_admin_auth') === '1') {
+      window.location.href = 'admin-dashboard.html';
+    }
+
+    // Generate particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 4 + 2;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random() * 100}%;
+        animation-duration:${Math.random() * 12 + 8}s;
+        animation-delay:${Math.random() * 8}s;
+        opacity:${Math.random() * 0.5 + 0.1};
+      `;
+      container.appendChild(p);
+    }
+
+    function togglePassword() {
+      const inp = document.getElementById('password');
+      const eye = document.getElementById('pw-eye');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        eye.className = 'fa fa-eye-slash';
+      } else {
+        inp.type = 'password';
+        eye.className = 'fa fa-eye';
+      }
+    }
+
+    function showForgot() {
+      alert('Please contact the system administrator to reset your password.\n\nEmail: kgrproperties@gmail.com\nPhone: +91 8790283230');
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorBox = document.getElementById('error-box');
+      const btn = document.getElementById('login-btn');
+
+      errorBox.classList.add('hidden');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        if (adminAuth(username, password)) {
+          sessionStorage.setItem('kgr_admin_auth', '1');
+          sessionStorage.setItem('kgr_admin_user', username);
+          if (document.getElementById('remember-me').checked) {
+            localStorage.setItem('kgr_admin_remember', username);
+          }
+          // Success flash
+          btn.innerHTML = '<i class="fa fa-check-circle"></i> &nbsp;Access Granted!';
+          btn.style.background = 'linear-gradient(135deg, #065f46, #10b981)';
+          btn.style.color = '#fff';
+          setTimeout(() => window.location.href = 'admin-dashboard.html', 800);
+        } else {
+          btn.classList.remove('loading');
+          btn.disabled = false;
+          errorBox.classList.remove('hidden');
+          document.getElementById('error-msg').textContent = 'Invalid username or password. Please try again.';
+          document.getElementById('password').value = '';
+          // Shake animation
+          const card = document.querySelector('.login-card');
+          card.style.animation = 'none';
+          card.style.transform = 'translateX(-8px)';
+          setTimeout(() => { card.style.transform = 'translateX(8px)'; }, 80);
+          setTimeout(() => { card.style.transform = 'translateX(-4px)'; }, 160);
+          setTimeout(() => { card.style.transform = 'translateX(0)'; card.style.transition = 'transform 0.3s'; }, 240);
+        }
+      }, 1000);
+    }
+
+    // Pre-fill remembered username
+    const remembered = localStorage.getItem('kgr_admin_remember');
+    if (remembered) {
+      document.getElementById('username').value = remembered;
+      document.getElementById('remember-me').checked = true;
+    }
+  </script>
+</body>
+</html>

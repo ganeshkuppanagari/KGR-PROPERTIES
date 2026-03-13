@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Property – KGR Properties Admin</title>
+  <meta name="description" content="Admin panel to upload new property listings for KGR Properties near Tirupati." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/kgr_logo_1773396572407.png" alt="KGR Properties Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">KGR PROPERTIES</span>
+          <span class="logo-sub">Premium Real Estate</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="properties.html"><i class="fa fa-building"></i> Properties</a></li>
+        <li><a href="locations.html"><i class="fa fa-map-marker-alt"></i> Locations</a></li>
+        <li><a href="upload.html" class="active"><i class="fa fa-upload"></i> Upload Property</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="breadcrumb"><a href="index.html">Home</a><i class="fa fa-chevron-right"></i><span>Upload Property</span></div>
+        <h1>Upload <span class="gold-text">Property Listing</span></h1>
+        <p>Add a new property to our database. It will appear instantly on the relevant location page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPLOAD FORM -->
+  <section class="section-pad" style="background:var(--off-white)">
+    <div class="container">
+
+      <!-- ADMIN NOTICE -->
+      <div style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:12px; padding:16px 24px; display:flex; gap:12px; align-items:center; margin-bottom:32px; max-width:900px; margin-left:auto; margin-right:auto;">
+        <i class="fa fa-shield-alt" style="color:var(--gold); font-size:20px; flex-shrink:0;"></i>
+        <div>
+          <strong style="color:var(--navy);">Admin Portal</strong>
+          <p style="font-size:14px; color:var(--gray); margin:0;">Properties uploaded here will be saved and displayed immediately on the corresponding location pages. Uploaded images are stored locally.</p>
+        </div>
+      </div>
+
+      <div class="upload-form-wrap">
+        <form id="upload-form" onsubmit="submitProperty(event)" novalidate>
+
+          <!-- BASIC INFO -->
+          <h3 class="form-section-title"><i class="fa fa-info-circle" style="color:var(--gold)"></i> Property Information</h3>
+          <div class="form-grid" style="margin-top:24px;">
+            <div class="form-group form-group-full">
+              <label>Property Title <span class="req">*</span></label>
+              <input type="text" class="form-input" id="f-title" placeholder="e.g. Prime Residential Plot – Tirupati East" required />
+            </div>
+            <div class="form-group">
+              <label>Property Type <span class="req">*</span></label>
+              <select class="form-select" id="f-type" required>
+                <option value="">Select Type</option>
+                <option value="Land">Land / Plot</option>
+                <option value="House">House / Villa</option>
+                <option value="Building">Building</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Location <span class="req">*</span></label>
+              <select class="form-select" id="f-location" required>
+                <option value="">Select Location</option>
+                <option value="tirupati">Tirupati</option>
+                <option value="srikalahasti">Srikalahasti</option>
+                <option value="venkatagiri">Venkatagiri</option>
+                <option value="renigunta">Renigunta</option>
+                <option value="chandragiri">Chandragiri</option>
+                <option value="yerpedu">Yerpedu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Area <span class="req">*</span></label>
+              <input type="text" class="form-input" id="f-area" placeholder="e.g. 240 sq.yd. or 2 Acres" required />
+            </div>
+            <div class="form-group">
+              <label>Price <span class="req">*</span></label>
+              <input type="text" class="form-input" id="f-price" placeholder="e.g. ₹25 Lakhs or ₹1.2 Crore" required />
+            </div>
+            <div class="form-group">
+              <label>Price (in Lakhs, for filtering) <span class="req">*</span></label>
+              <input type="number" class="form-input" id="f-price-num" placeholder="e.g. 25 (for ₹25 Lakhs)" min="0" step="0.1" required />
+            </div>
+            <div class="form-group form-group-full">
+              <label>Description <span class="req">*</span></label>
+              <textarea class="form-textarea" id="f-description" placeholder="Describe the property – highlights, approvals, nearby amenities, road access, etc." required></textarea>
+            </div>
+          </div>
+
+          <!-- CONTACT -->
+          <h3 class="form-section-title" style="margin-top:40px;"><i class="fa fa-phone" style="color:var(--gold)"></i> Contact Details</h3>
+          <div class="form-grid" style="margin-top:24px;">
+            <div class="form-group">
+              <label>Contact Number <span class="req">*</span></label>
+              <input type="tel" class="form-input" id="f-contact" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label>Google Maps Link (Embed URL)</label>
+              <input type="text" class="form-input" id="f-map" placeholder="Paste Google Maps embed src URL" />
+            </div>
+          </div>
+
+          <!-- IMAGES -->
+          <h3 class="form-section-title" style="margin-top:40px;"><i class="fa fa-images" style="color:var(--gold)"></i> Property Images</h3>
+          <div class="form-grid" style="margin-top:24px;">
+            <div class="form-group">
+              <label>Property Photo <span class="req">*</span></label>
+              <div class="form-file-wrap" onclick="document.getElementById('img-upload').click()">
+                <i class="fa fa-camera"></i>
+                <p>Click to upload property photo</p>
+                <span>Accepts JPG, PNG, WebP (max 5MB)</span>
+                <div id="img-preview" style="margin-top:12px;display:none;">
+                  <img id="img-preview-img" src="" alt="Preview" style="max-height:150px; border-radius:8px; margin:0 auto;" />
+                </div>
+              </div>
+              <input type="file" id="img-upload" class="form-file-input" accept="image/*" onchange="previewImage(this, 'img-preview')" />
+            </div>
+            <div class="form-group">
+              <label>Layout / Site Map (Optional)</label>
+              <div class="form-file-wrap" onclick="document.getElementById('map-upload').click()">
+                <i class="fa fa-map"></i>
+                <p>Click to upload layout map</p>
+                <span>Accepts JPG, PNG, PDF (max 5MB)</span>
+                <div id="map-preview" style="margin-top:12px;display:none;">
+                  <img id="map-preview-img" src="" alt="Map Preview" style="max-height:150px; border-radius:8px; margin:0 auto;" />
+                </div>
+              </div>
+              <input type="file" id="map-upload" class="form-file-input" accept="image/*,.pdf" onchange="previewImage(this, 'map-preview')" />
+            </div>
+          </div>
+
+          <!-- FEATURED -->
+          <div style="margin-top:28px; background:var(--off-white); border-radius:12px; padding:20px 24px; display:flex; gap:16px; align-items:center;">
+            <input type="checkbox" id="f-featured" style="width:20px; height:20px; accent-color:var(--gold); cursor:pointer;" />
+            <label for="f-featured" style="font-weight:600; color:var(--navy); cursor:pointer;">
+              <strong>Mark as Featured</strong> – This property will appear on the home page featured section
+            </label>
+          </div>
+
+          <!-- SUBMIT -->
+          <div style="margin-top:32px;">
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <i class="fa fa-upload"></i> Upload Property Listing
+            </button>
+          </div>
+
+          <!-- SUCCESS MESSAGE -->
+          <div class="submit-success" id="submit-success">
+            <i class="fa fa-check-circle" style="font-size:32px; margin-bottom:12px; display:block;"></i>
+            <strong>Property Uploaded Successfully!</strong>
+            <p style="margin-top:8px; font-weight:normal; font-size:14px;">Your property has been added and will now appear on the corresponding location page.</p>
+            <div style="margin-top:16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+              <a href="properties.html" class="btn-gold" style="font-size:14px; padding:10px 24px;">View All Properties</a>
+              <button onclick="resetForm()" class="btn-filter-reset" style="padding:10px 24px; font-size:14px;">Upload Another</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- MANAGE LISTINGS -->
+        <div style="margin-top:60px; padding-top:40px; border-top:2px solid var(--light-gray);">
+          <h3 class="form-section-title"><i class="fa fa-list" style="color:var(--gold)"></i> Manage Existing Listings</h3>
+          <div id="manage-grid" style="margin-top:24px; display:flex; flex-direction:column; gap:12px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="images/kgr_logo_1773396572407.png" alt="KGR Logo" class="footer-logo" /><h3>KGR PROPERTIES</h3><p>Your trusted real estate partner since 2010.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="properties.html">Properties</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Locations</h4><ul><li><a href="location-detail.html?loc=tirupati">Tirupati</a></li><li><a href="location-detail.html?loc=srikalahasti">Srikalahasti</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><div class="footer-contact"><p><i class="fa fa-phone"></i><a href="tel:+919876543210">+91 98765 43210</a></p></div></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 KGR Properties. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919876543210" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with us!</span></a>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavbar();
+      renderManageList();
+    });
+
+    let uploadedImageDataURL = '';
+    let uploadedMapDataURL = '';
+
+    function previewImage(input, previewId) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const prev = document.getElementById(previewId);
+        const img = document.getElementById(previewId + '-img');
+        if (img) { img.src = e.target.result; prev.style.display = 'block'; }
+        if (input.id === 'img-upload') uploadedImageDataURL = e.target.result;
+        if (input.id === 'map-upload') uploadedMapDataURL = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function submitProperty(e) {
+      e.preventDefault();
+      const title = document.getElementById('f-title').value.trim();
+      const type = document.getElementById('f-type').value;
+      const location = document.getElementById('f-location').value;
+      const area = document.getElementById('f-area').value.trim();
+      const price = document.getElementById('f-price').value.trim();
+      const priceNum = parseFloat(document.getElementById('f-price-num').value) || 0;
+      const description = document.getElementById('f-description').value.trim();
+      const contact = document.getElementById('f-contact').value.trim();
+      const mapLink = document.getElementById('f-map').value.trim();
+      const featured = document.getElementById('f-featured').checked;
+
+      if (!title || !type || !location || !area || !price || !description || !contact) {
+        alert('Please fill all required fields (marked with *)');
+        return;
+      }
+
+      const props = getProperties();
+      const newId = Math.max(...props.map(p => p.id), 0) + 1;
+      const newProp = {
+        id: newId, title, type, location, area, price, priceNum, description,
+        contact, featured,
+        image: uploadedImageDataURL || getDefaultImage(type),
+        mapLink: mapLink || getDefaultMapLink(location)
+      };
+
+      props.push(newProp);
+      saveProperties(props);
+
+      document.getElementById('upload-form').style.opacity = '0.4';
+      document.getElementById('upload-form').style.pointerEvents = 'none';
+      document.getElementById('submit-success').classList.add('show');
+      document.getElementById('submit-success').style.display = 'block';
+      renderManageList();
+    }
+
+    function getDefaultImage(type) {
+      const imgs = {
+        Land: 'images/property_land1_1773396717189.png',
+        House: 'images/property_house1_1773396735129.png',
+        Building: 'images/property_building1_1773396752928.png',
+        Commercial: 'images/property_building1_1773396752928.png'
+      };
+      return imgs[type] || 'images/tirupati_hero_1773396591802.png';
+    }
+
+    function getDefaultMapLink(loc) {
+      const links = {
+        tirupati: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.38!3d13.63!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d4b5!2sTirupati!5e0!3m2!1sen!2sin!4v1700000001',
+        srikalahasti: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61399.4!2d79.70!3d13.64!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4cc5!2sSrikalahasti!5e0!3m2!1sen!2sin!4v1700000002',
+      };
+      return links[loc] || links['tirupati'];
+    }
+
+    function resetForm() {
+      document.getElementById('upload-form').reset();
+      document.getElementById('upload-form').style.opacity = '1';
+      document.getElementById('upload-form').style.pointerEvents = 'auto';
+      document.getElementById('submit-success').classList.remove('show');
+      document.getElementById('submit-success').style.display = 'none';
+      document.getElementById('img-preview').style.display = 'none';
+      document.getElementById('map-preview').style.display = 'none';
+      uploadedImageDataURL = '';
+      uploadedMapDataURL = '';
+    }
+
+    function deleteProperty(id) {
+      if (!confirm('Are you sure you want to delete this property?')) return;
+      let props = getProperties();
+      props = props.filter(p => p.id !== id);
+      saveProperties(props);
+      renderManageList();
+    }
+
+    function renderManageList() {
+      const grid = document.getElementById('manage-grid');
+      const props = getProperties();
+      if (props.length === 0) {
+        grid.innerHTML = '<p style="color:var(--gray); font-size:14px;">No properties yet.</p>';
+        return;
+      }
+      grid.innerHTML = props.map(p => `
+        <div style="display:flex; gap:16px; align-items:center; background:var(--off-white); border-radius:10px; padding:12px 16px; border:1px solid var(--light-gray);">
+          <img src="${p.image}" alt="${p.title}" style="width:64px; height:48px; object-fit:cover; border-radius:6px; flex-shrink:0;" />
+          <div style="flex:1; min-width:0;">
+            <div style="font-weight:700; font-size:14px; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${p.title}</div>
+            <div style="font-size:12px; color:var(--gray);">${locationLabel(p.location)} · ${p.type} · ${p.price}</div>
+          </div>
+          <div style="display:flex; gap:8px; flex-shrink:0;">
+            <a href="location-detail.html?loc=${p.location}" style="background:rgba(13,27,42,0.08); color:var(--navy); padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; display:flex; align-items:center; gap:4px;"><i class="fa fa-eye"></i> View</a>
+            <button onclick="deleteProperty(${p.id})" style="background:#fee2e2; color:#dc2626; border:none; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:4px;"><i class="fa fa-trash"></i> Delete</button>
+          </div>
+        </div>`).join('');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locations Near Tirupati – KGR Properties</title>
+  <meta name="description" content="Explore prime real estate locations near Tirupati – Srikalahasti, Venkatagiri, Renigunta, Chandragiri and Yerpedu." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/kgr_logo_1773396572407.png" alt="KGR Properties Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">KGR PROPERTIES</span>
+          <span class="logo-sub">Premium Real Estate</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="properties.html"><i class="fa fa-building"></i> Properties</a></li>
+        <li><a href="locations.html" class="active"><i class="fa fa-map-marker-alt"></i> Locations</a></li>
+
+        <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+        <li><a href="admin-login.html" class="admin-nav-btn" title="Admin Dashboard"><i class="fa fa-user-shield"></i></a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="breadcrumb"><a href="index.html">Home</a><i class="fa fa-chevron-right"></i><span>Locations</span></div>
+        <h1>Places Near <span class="gold-text">Tirupati</span></h1>
+        <p>Explore prime real estate across the Tirupati region's most exciting growth corridors</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS SECTION -->
+  <section class="locations section-pad">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa fa-map-marker-alt"></i> All Locations</span>
+        <h2>Our Coverage <span class="gold-text">Areas</span></h2>
+        <p>We offer premium properties across 6 high-growth localities surrounding Tirupati</p>
+      </div>
+      <div class="locations-grid">
+        <div class="location-card animate-on-scroll" onclick="goToLocation('tirupati')">
+          <div class="loc-img-wrap"><img src="images/tirupati_city_1773396609510.png" alt="Tirupati" /><div class="loc-overlay"><button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button></div><div class="loc-badge">Most Popular</div></div>
+          <div class="loc-body"><h3><i class="fa fa-map-marker-alt gold-text"></i> Tirupati</h3><p>Spiritual capital of AP with booming real estate, modern infrastructure and millions of annual visitors. Top choice for residential and commercial investments.</p><div class="loc-meta"><span><i class="fa fa-building"></i> 120+ Properties</span><span><i class="fa fa-rupee-sign"></i> From ₹8L</span></div></div>
+        </div>
+        <div class="location-card animate-on-scroll" onclick="goToLocation('srikalahasti')">
+          <div class="loc-img-wrap"><img src="images/srikalahasti_img_1773396631491.png" alt="Srikalahasti" /><div class="loc-overlay"><button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button></div></div>
+          <div class="loc-body"><h3><i class="fa fa-map-marker-alt gold-text"></i> Srikalahasti</h3><p>Famous temple town 36km from Tirupati. Affordable land rates with high appreciation potential. Excellent connectivity to Chennai and Tirupati via NH.</p><div class="loc-meta"><span><i class="fa fa-building"></i> 85+ Properties</span><span><i class="fa fa-rupee-sign"></i> From ₹5L</span></div></div>
+        </div>
+        <div class="location-card animate-on-scroll" onclick="goToLocation('venkatagiri')">
+          <div class="loc-img-wrap"><img src="images/venkatagiri_img_1773396647069.png" alt="Venkatagiri" /><div class="loc-overlay"><button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button></div></div>
+          <div class="loc-body"><h3><i class="fa fa-map-marker-alt gold-text"></i> Venkatagiri</h3><p>Silk town of AP with lush green surroundings. Ideal for agricultural land, farmhouses and budget residential plots with future appreciation potential.</p><div class="loc-meta"><span><i class="fa fa-building"></i> 60+ Properties</span><span><i class="fa fa-rupee-sign"></i> From ₹3L</span></div></div>
+        </div>
+        <div class="location-card animate-on-scroll" onclick="goToLocation('renigunta')">
+          <div class="loc-img-wrap"><img src="images/renigunta_img_1773396663155.png" alt="Renigunta" /><div class="loc-overlay"><button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button></div><div class="loc-badge badge-blue">Airport Zone</div></div>
+          <div class="loc-body"><h3><i class="fa fa-map-marker-alt gold-text"></i> Renigunta</h3><p>Home to Tirupati International Airport. NH junction town with high commercial value. Land prices appreciating rapidly due to industrial and logistics development.</p><div class="loc-meta"><span><i class="fa fa-building"></i> 95+ Properties</span><span><i class="fa fa-rupee-sign"></i> From ₹12L</span></div></div>
+        </div>
+        <div class="location-card animate-on-scroll" onclick="goToLocation('chandragiri')">
+          <div class="loc-img-wrap"><img src="images/chandragiri_img_1773396680370.png" alt="Chandragiri" /><div class="loc-overlay"><button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button></div></div>
+          <div class="loc-body"><h3><i class="fa fa-map-marker-alt gold-text"></i> Chandragiri</h3><p>Historic fort town 11km from Tirupati. Peaceful environment ideal for villas and farmhouses. DTCP approved layouts available at affordable prices.</p><div class="loc-meta"><span><i class="fa fa-building"></i> 45+ Properties</span><span><i class="fa fa-rupee-sign"></i> From ₹4L</span></div></div>
+        </div>
+        <div class="location-card animate-on-scroll" onclick="goToLocation('yerpedu')">
+          <div class="loc-img-wrap"><img src="images/yerpedu_img_1773396696716.png" alt="Yerpedu" /><div class="loc-overlay"><button class="btn-view-props">View Properties <i class="fa fa-arrow-right"></i></button></div></div>
+          <div class="loc-body"><h3><i class="fa fa-map-marker-alt gold-text"></i> Yerpedu</h3><p>Emerging suburb on Tirupati–Chennai highway. TIDCO projects nearby, developing infrastructure and budget land rates. Great investment for the future.</p><div class="loc-meta"><span><i class="fa fa-building"></i> 50+ Properties</span><span><i class="fa fa-rupee-sign"></i> From ₹3.5L</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW MAP -->
+  <section style="background:var(--white); padding:64px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa fa-map"></i> Map View</span>
+        <h2>Tirupati Region <span class="gold-text">Overview Map</span></h2>
+        <p>All our service locations in and around the Tirupati district</p>
+      </div>
+      <div class="map-embed" style="height:450px; border-radius:20px; overflow:hidden; box-shadow:var(--shadow);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122758.88908137169!2d79.33!3d13.63!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d4b5fee0d8b6d%3A0x4be23c9fd07e3f8b!2sTirupati%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000"
+          allowfullscreen loading="lazy" title="Tirupati Region Map" style="width:100%;height:100%;border:none;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="images/kgr_logo_1773396572407.png" alt="KGR Logo" class="footer-logo" /><h3>KGR PROPERTIES</h3><p>Your trusted real estate partner since 2010.</p><div class="social-links"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="properties.html">All Properties</a></li><li><a href="locations.html">Locations</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="admin-login.html" style="font-size: 10px; opacity: 0.5;">Admin</a></li></ul></div>
+        <div class="footer-col"><h4>Locations</h4><ul><li><a href="location-detail.html?loc=tirupati">Tirupati</a></li><li><a href="location-detail.html?loc=srikalahasti">Srikalahasti</a></li><li><a href="location-detail.html?loc=venkatagiri">Venkatagiri</a></li><li><a href="location-detail.html?loc=renigunta">Renigunta</a></li><li><a href="location-detail.html?loc=chandragiri">Chandragiri</a></li><li><a href="location-detail.html?loc=yerpedu">Yerpedu</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><div class="footer-contact"><p><i class="fa fa-map-marker-alt"></i>MG Road, Tirupati – 517501, Andhra Pradesh</p><p><i class="fa fa-phone"></i><a href="tel:+918790283230">+91 87902 83230</a></p><p><i class="fa fa-envelope"></i><a href="mailto:kgrproperties@gmail.com">kgrproperties@gmail.com</a></p><p><i class="fa fa-clock"></i>Mon–Sat: 9AM – 7PM</p></div></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 KGR Properties. All rights reserved. | Designed with <i class="fa fa-heart gold-text"></i> for Tirupati Region</p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918790283230" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with us!</span></a>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavbar();
+      initScrollAnimations();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Properties – KGR Properties Tirupati</title>
+  <meta name="description" content="Browse all properties available for sale near Tirupati – land, plots, houses, villas and commercial buildings." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/kgr_logo_1773396572407.png" alt="KGR Properties Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">KGR PROPERTIES</span>
+          <span class="logo-sub">Premium Real Estate</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="properties.html" class="active"><i class="fa fa-building"></i> Properties</a></li>
+        <li><a href="locations.html"><i class="fa fa-map-marker-alt"></i> Locations</a></li>
+
+        <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+        <li><a href="admin-login.html" class="admin-nav-btn" title="Admin Dashboard"><i class="fa fa-user-shield"></i></a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="breadcrumb"><a href="index.html">Home</a><i class="fa fa-chevron-right"></i><span>All Properties</span></div>
+        <h1>All <span class="gold-text">Properties</span></h1>
+        <p>Explore our complete portfolio of premium land, plots, houses and commercial spaces</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="section-pad" style="background:var(--off-white)">
+    <div class="container">
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>Location</label>
+          <select class="filter-select" id="f-location">
+            <option value="">All Locations</option>
+            <option value="tirupati">Tirupati</option>
+            <option value="srikalahasti">Srikalahasti</option>
+            <option value="venkatagiri">Venkatagiri</option>
+            <option value="renigunta">Renigunta</option>
+            <option value="chandragiri">Chandragiri</option>
+            <option value="yerpedu">Yerpedu</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select class="filter-select" id="f-type">
+            <option value="">All Types</option>
+            <option value="Land">Land / Plot</option>
+            <option value="House">House / Villa</option>
+            <option value="Building">Building</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Max Budget (Lakhs)</label>
+          <select class="filter-select" id="f-budget">
+            <option value="">Any Budget</option>
+            <option value="5">Under ₹5L</option>
+            <option value="20">Under ₹20L</option>
+            <option value="50">Under ₹50L</option>
+            <option value="100">Under ₹1 Crore</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" class="filter-input" id="f-search" placeholder="Search by title..." />
+        </div>
+        <button class="btn-filter" onclick="applyFilters()"><i class="fa fa-filter"></i> Filter</button>
+        <button class="btn-filter-reset" onclick="resetFilters()"><i class="fa fa-times"></i> Reset</button>
+      </div>
+
+      <div class="results-count" id="results-count"></div>
+      <div class="prop-grid" id="props-grid"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/kgr_logo_1773396572407.png" alt="KGR Logo" class="footer-logo" />
+          <h3>KGR PROPERTIES</h3>
+          <p>Your trusted real estate partner for premium land, plots, houses & commercial buildings in the Tirupati region since 2010.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul><li><a href="index.html">Home</a></li><li><a href="properties.html">All Properties</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin-login.html" style="font-size: 10px; opacity: 0.5;">Admin</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul><li><a href="location-detail.html?loc=tirupati">Tirupati</a></li><li><a href="location-detail.html?loc=srikalahasti">Srikalahasti</a></li><li><a href="location-detail.html?loc=renigunta">Renigunta</a></li><li><a href="location-detail.html?loc=chandragiri">Chandragiri</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <p><i class="fa fa-phone"></i> <a href="tel:+918790283230">+91 87902 83230</a></p>
+            <p><i class="fa fa-envelope"></i> <a href="mailto:kgrproperties@gmail.com">kgrproperties@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 KGR Properties. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918790283230?text=Hello%20KGR%20Properties%2C%20I%20am%20interested%20in%20your%20properties" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with us!</span></a>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      initNavbar();
+      initScrollAnimations();
+      // Read URL params
+      const params = new URLSearchParams(window.location.search);
+      const pLoc = params.get('loc') || '';
+      const pType = params.get('type') || '';
+      const pBudget = params.get('budget') || '';
+      if (pLoc) document.getElementById('f-location').value = pLoc;
+      if (pType) document.getElementById('f-type').value = pType;
+      if (pBudget) document.getElementById('f-budget').value = pBudget;
+      await renderProps();
+    });
+
+    async function renderProps(filtered) {
+      const grid = document.getElementById('props-grid');
+      const count = document.getElementById('results-count');
+      
+      let all;
+      if (filtered !== undefined) {
+        all = filtered;
+      } else {
+        // Fetch from Supabase if configured, else fallback to localStorage via main.js helpers
+        if (typeof fetchProperties === 'function') {
+          // Get filters from UI
+          const loc = document.getElementById('f-location').value;
+          const type = document.getElementById('f-type').value;
+          all = await fetchProperties({ location: loc || undefined, type: type || undefined });
+        } else {
+          all = getProperties();
+        }
+      }
+      count.innerHTML = `Showing <strong>${all.length}</strong> propert${all.length === 1 ? 'y' : 'ies'}`;
+      if (all.length === 0) {
+        grid.innerHTML = `<div class="no-results"><i class="fa fa-search-minus"></i><h3>No properties found</h3><p>Try adjusting your filters or <a href="contact.html" style="color:var(--gold)">contact us</a> for custom requirements.</p></div>`;
+        return;
+      }
+      grid.innerHTML = all.map(p => propCardHTML(p)).join('');
+      initScrollAnimations();
+    }
+
+    async function applyFilters() {
+      const loc = document.getElementById('f-location').value;
+      const type = document.getElementById('f-type').value;
+      const budget = parseFloat(document.getElementById('f-budget').value) || Infinity;
+      const search = document.getElementById('f-search').value.toLowerCase();
+      
+      let props;
+      if (typeof fetchProperties === 'function') {
+        props = await fetchProperties({ location: loc || undefined, type: type || undefined });
+      } else {
+        props = getProperties();
+        if (loc) props = props.filter(p => p.location === loc);
+        if (type) props = props.filter(p => p.type === type);
+      }
+
+      if (budget !== Infinity) props = props.filter(p => p.priceNum <= budget);
+      if (search) props = props.filter(p => p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+      await renderProps(props);
+    }
+
+    async function resetFilters() {
+      document.getElementById('f-location').value = '';
+      document.getElementById('f-type').value = '';
+      document.getElementById('f-budget').value = '';
+      document.getElementById('f-search').value = '';
+      await renderProps();
+    }
+
+    // Style prop-cards for light background on this page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProps();
+    });
+  </script>
+  <style>
+    /* Override dark card styles for light page */
+    .prop-card { background: var(--white); border-color: var(--light-gray); }
+    .prop-title { color: var(--navy); }
+    .prop-loc { color: var(--gray); }
+    .prop-detail { color: var(--gray); }
+    .btn-contact { color: var(--navy-mid); border-color: rgba(13,27,42,0.2); background: var(--off-white); }
+    .btn-contact:hover { background: var(--light-gray); }
+  </style>
+</body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – KGR Properties</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon"><i class="fa fa-building"></i></div>
+        <div>
+          <div class="sidebar-logo-name">KGR PROPERTIES</div>
+          <div class="sidebar-logo-sub">Admin Panel</div>
+        </div>
+      </div>
+      <button class="sidebar-close" id="sidebar-close" onclick="toggleSidebar()"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="sidebar-admin-info" id="sidebar-admin-info">
+      <div class="admin-avatar" id="admin-avatar">AD</div>
+      <div>
+        <div class="admin-name" id="admin-name">Admin</div>
+        <div class="admin-role" id="admin-role">Super Admin</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">Main</div>
+      <a href="#" class="nav-item active" data-panel="dashboard" onclick="showPanel('dashboard', this)">
+        <i class="fa fa-tachometer-alt"></i><span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="add-property" onclick="showPanel('add-property', this)">
+        <i class="fa fa-plus-circle"></i><span>Add Property</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="all-properties" onclick="showPanel('all-properties', this)">
+        <i class="fa fa-list"></i><span>All Properties</span>
+        <span class="nav-badge" id="prop-count-badge">0</span>
+      </a>
+      <div class="nav-group-label">Manage</div>
+      <a href="#" class="nav-item" data-panel="manage-locations" onclick="showPanel('manage-locations', this)">
+        <i class="fa fa-map-marker-alt"></i><span>Manage Locations</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="upload-images" onclick="showPanel('upload-images', this)">
+        <i class="fa fa-images"></i><span>Image Library</span>
+      </a>
+      <div class="nav-group-label">Settings</div>
+      <a href="index.html" class="nav-item" target="_blank">
+        <i class="fa fa-external-link-alt"></i><span>View Website</span>
+      </a>
+      <a href="#" class="nav-item nav-item-danger" onclick="adminLogout()">
+        <i class="fa fa-sign-out-alt"></i><span>Sign Out</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ===== SIDEBAR OVERLAY (mobile) ===== -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="admin-main" id="admin-main">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="hamburger" onclick="toggleSidebar()"><i class="fa fa-bars"></i></button>
+        <div class="topbar-breadcrumb">
+          <span id="panel-breadcrumb">Dashboard</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-time" id="topbar-time"></div>
+        <a href="index.html" target="_blank" class="topbar-icon-btn" title="View Website">
+          <i class="fa fa-external-link-alt"></i>
+        </a>
+        <div class="topbar-admin" onclick="adminLogout()" title="Sign Out">
+          <div class="topbar-avatar" id="topbar-avatar">AD</div>
+          <span id="topbar-admin-name">Admin</span>
+          <i class="fa fa-caret-down" style="font-size:11px; color:rgba(255,255,255,0.4);"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==============================
+         PANEL: DASHBOARD
+         ============================== -->
+    <div class="panel" id="panel-dashboard">
+      <div class="panel-header">
+        <h1>Welcome back, <span class="gold-text" id="welcome-name">Admin</span> 👋</h1>
+        <p>Here's an overview of your KGR Properties listings</p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa fa-home"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Total Properties</span>
+            <span class="stat-value" id="stat-total">0</span>
+          </div>
+          <div class="stat-trend up"><i class="fa fa-arrow-up"></i> Active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon emerald"><i class="fa fa-star"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Featured</span>
+            <span class="stat-value" id="stat-featured">0</span>
+          </div>
+          <div class="stat-trend up"><i class="fa fa-arrow-up"></i> On Homepage</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa fa-map-marker-alt"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Locations</span>
+            <span class="stat-value">6</span>
+          </div>
+          <div class="stat-trend neutral"><i class="fa fa-circle"></i> Areas Covered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple"><i class="fa fa-layer-group"></i></div>
+          <div class="stat-info">
+            <span class="stat-label">Property Types</span>
+            <span class="stat-value">4</span>
+          </div>
+          <div class="stat-trend neutral"><i class="fa fa-circle"></i> Categories</div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="section-title">Quick Actions</div>
+      <div class="quick-actions">
+        <div class="qa-card" onclick="showPanel('add-property', document.querySelector('[data-panel=add-property]'))">
+          <i class="fa fa-plus-circle"></i>
+          <span>Add New Property</span>
+        </div>
+        <div class="qa-card" onclick="showPanel('all-properties', document.querySelector('[data-panel=all-properties]'))">
+          <i class="fa fa-list"></i>
+          <span>View All Listings</span>
+        </div>
+        <div class="qa-card" onclick="showPanel('manage-locations', document.querySelector('[data-panel=manage-locations]'))">
+          <i class="fa fa-map-marker-alt"></i>
+          <span>Manage Locations</span>
+        </div>
+        <div class="qa-card" onclick="showPanel('upload-images', document.querySelector('[data-panel=upload-images]'))">
+          <i class="fa fa-images"></i>
+          <span>Image Library</span>
+        </div>
+        <div class="qa-card" onclick="window.open('index.html','_blank')">
+          <i class="fa fa-eye"></i>
+          <span>Preview Website</span>
+        </div>
+        <div class="qa-card" onclick="window.open('contact.html','_blank')">
+          <i class="fa fa-envelope"></i>
+          <span>Contact Page</span>
+        </div>
+      </div>
+
+      <!-- Recent Properties -->
+      <div class="section-title" style="margin-top:36px;">Recent Listings</div>
+      <div class="recent-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>Featured</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="recent-table-body">
+            <tr><td colspan="6" style="text-align:center; color:rgba(255,255,255,0.3); padding:32px;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Location breakdown -->
+      <div class="section-title" style="margin-top:36px;">Properties by Location</div>
+      <div class="location-breakdown" id="location-breakdown"></div>
+    </div>
+
+    <!-- ==============================
+         PANEL: ADD PROPERTY
+         ============================== -->
+    <div class="panel hidden" id="panel-add-property">
+      <div class="panel-header">
+        <h1>Add <span class="gold-text">New Property</span></h1>
+        <p>Fill in the details below. The listing will appear instantly on the correct location page.</p>
+      </div>
+
+      <div class="form-card" id="add-property-form-wrap">
+        <form id="add-property-form" onsubmit="submitAddProperty(event)" novalidate>
+
+          <div class="form-section-title"><i class="fa fa-info-circle"></i> Property Information</div>
+          <div class="form-grid">
+            <div class="form-group form-full">
+              <label class="form-label">Property Title <span class="req">*</span></label>
+              <input type="text" class="form-control" id="ap-title" placeholder="e.g. Prime Residential Plot – Tirupati East" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Property Type <span class="req">*</span></label>
+              <select class="form-control" id="ap-type" required>
+                <option value="">Select Type</option>
+                <option value="Land">Land / Plot</option>
+                <option value="House">House / Villa</option>
+                <option value="Building">Building</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location <span class="req">*</span></label>
+              <select class="form-control" id="ap-location" required>
+                <option value="">Select Location</option>
+                <option value="tirupati">Tirupati</option>
+                <option value="srikalahasti">Srikalahasti</option>
+                <option value="venkatagiri">Venkatagiri</option>
+                <option value="renigunta">Renigunta</option>
+                <option value="chandragiri">Chandragiri</option>
+                <option value="yerpedu">Yerpedu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Area Size <span class="req">*</span></label>
+              <input type="text" class="form-control" id="ap-area" placeholder="e.g. 240 sq.yd. or 3 Acres" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price (Display) <span class="req">*</span></label>
+              <input type="text" class="form-control" id="ap-price" placeholder="e.g. ₹25 Lakhs or ₹1.2 Crore" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price in Lakhs <small>(for filtering)</small> <span class="req">*</span></label>
+              <input type="number" class="form-control" id="ap-price-num" placeholder="e.g. 25" min="0" step="0.5" required />
+            </div>
+            <div class="form-group form-full">
+              <label class="form-label">Description <span class="req">*</span></label>
+              <textarea class="form-control form-textarea" id="ap-description" placeholder="Describe the property – highlights, legal status, nearby amenities, road access, water/electricity availability..." required></textarea>
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:32px;"><i class="fa fa-phone"></i> Contact Details</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Contact Phone <span class="req">*</span></label>
+              <input type="tel" class="form-control" id="ap-contact" placeholder="8790283230" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Google Maps Embed URL</label>
+              <input type="text" class="form-control" id="ap-map" placeholder="Paste the src URL from Google Maps embed" />
+              <small class="form-hint">Google Maps → Share → Embed a map → Copy only the src="..." part</small>
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:32px;"><i class="fa fa-images"></i> Property Images</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Property Photo <span class="req">*</span></label>
+              <div class="file-drop-zone" id="photo-drop" onclick="document.getElementById('ap-photo').click()">
+                <i class="fa fa-camera"></i>
+                <p>Click to upload or drag & drop</p>
+                <span>JPG, PNG, WebP – max 5MB</span>
+                <div class="file-preview" id="photo-preview" style="display:none;">
+                  <img id="photo-preview-img" src="" alt="" />
+                  <button type="button" class="remove-preview" onclick="event.stopPropagation(); clearFile('ap-photo','photo-preview','photo-drop')"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <input type="file" id="ap-photo" hidden accept="image/*" onchange="onPhotoFileChange(this)" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Layout / Site Map <small>(optional)</small></label>
+              <div class="file-drop-zone" id="map-drop" onclick="document.getElementById('ap-layout').click()">
+                <i class="fa fa-map"></i>
+                <p>Click to upload layout map</p>
+                <span>JPG, PNG, PDF – max 5MB</span>
+                <div class="file-preview" id="layout-preview" style="display:none;">
+                  <img id="layout-preview-img" src="" alt="" />
+                  <button type="button" class="remove-preview" onclick="event.stopPropagation(); clearFile('ap-layout','layout-preview','map-drop')"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <input type="file" id="ap-layout" hidden accept="image/*,.pdf" onchange="onLayoutFileChange(this)" />
+            </div>
+          </div>
+
+          <!-- Featured toggle -->
+          <div class="featured-toggle-wrap">
+            <label class="toggle-switch">
+              <input type="checkbox" id="ap-featured" />
+              <span class="toggle-slider"></span>
+            </label>
+            <div>
+              <strong>Mark as Featured</strong>
+              <p>This property will appear in the homepage featured section</p>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" onclick="resetAddForm()"><i class="fa fa-redo"></i> Clear Form</button>
+            <button type="submit" class="btn-primary" id="ap-submit-btn">
+              <i class="fa fa-upload"></i> Publish Property
+            </button>
+          </div>
+
+          <!-- Success message -->
+          <div class="success-alert hidden" id="ap-success">
+            <i class="fa fa-check-circle"></i>
+            <div>
+              <strong>Property Published Successfully!</strong>
+              <p>The listing is now live on the <span id="ap-success-loc"></span> page.</p>
+            </div>
+            <div class="success-actions">
+              <button onclick="viewPublishedProp()" class="btn-sm-gold">View Listing</button>
+              <button onclick="resetAddForm()" class="btn-sm-outline">Add Another</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==============================
+         PANEL: ALL PROPERTIES
+         ============================== -->
+    <div class="panel hidden" id="panel-all-properties">
+      <div class="panel-header">
+        <h1>All <span class="gold-text">Properties</span></h1>
+        <p>Manage, edit or delete property listings</p>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="table-toolbar">
+        <div class="toolbar-search">
+          <i class="fa fa-search"></i>
+          <input type="text" id="props-search" placeholder="Search properties..." oninput="filterPropertiesTable()" />
+        </div>
+        <div class="toolbar-filters">
+          <select id="props-filter-loc" onchange="filterPropertiesTable()" class="toolbar-select">
+            <option value="">All Locations</option>
+            <option value="tirupati">Tirupati</option>
+            <option value="srikalahasti">Srikalahasti</option>
+            <option value="venkatagiri">Venkatagiri</option>
+            <option value="renigunta">Renigunta</option>
+            <option value="chandragiri">Chandragiri</option>
+            <option value="yerpedu">Yerpedu</option>
+          </select>
+          <select id="props-filter-type" onchange="filterPropertiesTable()" class="toolbar-select">
+            <option value="">All Types</option>
+            <option value="Land">Land</option>
+            <option value="House">House</option>
+            <option value="Building">Building</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+        <button class="btn-primary btn-sm" onclick="showPanel('add-property', document.querySelector('[data-panel=add-property]'))">
+          <i class="fa fa-plus"></i> Add New
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table class="data-table" id="all-props-table">
+          <thead>
+            <tr>
+              <th style="width:60px;">#</th>
+              <th style="width:80px;">Image</th>
+              <th>Property Title</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Area</th>
+              <th>Price</th>
+              <th>Featured</th>
+              <th style="width:120px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="all-props-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==============================
+         PANEL: MANAGE LOCATIONS
+         ============================== -->
+    <div class="panel hidden" id="panel-manage-locations">
+      <div class="panel-header">
+        <h1>Manage <span class="gold-text">Locations</span></h1>
+        <p>Overview of all coverage areas with property counts</p>
+      </div>
+      <div class="locations-admin-grid" id="loc-admin-grid"></div>
+
+      <!-- Location Stats -->
+      <div class="section-title" style="margin-top:36px;">Properties by Location</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Location</th><th>Total Properties</th><th>Land</th><th>House</th><th>Building</th><th>Commercial</th><th>Actions</th></tr></thead>
+          <tbody id="loc-stats-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==============================
+         PANEL: IMAGE LIBRARY
+         ============================== -->
+    <div class="panel hidden" id="panel-upload-images">
+      <div class="panel-header">
+        <h1>Image <span class="gold-text">Library</span></h1>
+        <p>Manage uploaded property images and layout maps</p>
+      </div>
+
+      <div class="form-card">
+        <div class="form-section-title"><i class="fa fa-upload"></i> Upload New Images</div>
+        <div class="file-drop-zone large" id="lib-drop" onclick="document.getElementById('lib-upload').click()">
+          <i class="fa fa-images" style="font-size:48px;"></i>
+          <p>Click to select images or drag & drop here</p>
+          <span>Accepts JPG, PNG, WebP – multiple files allowed</span>
+        </div>
+        <input type="file" id="lib-upload" hidden multiple accept="image/*" onchange="handleLibraryUpload(this)" />
+        <div class="lib-preview-grid" id="lib-preview-grid"></div>
+      </div>
+
+      <!-- Existing images from properties -->
+      <div class="section-title" style="margin-top:32px;">Property Images in Use</div>
+      <div class="lib-existing-grid" id="lib-existing-grid"></div>
+    </div>
+
+  </main>
+
+  <!-- ==============================
+       EDIT PROPERTY MODAL
+       ============================== -->
+  <div class="modal-overlay hidden" id="edit-modal">
+    <div class="modal edit-modal">
+      <div class="modal-header">
+        <h2><i class="fa fa-edit gold-text"></i> Edit Property</h2>
+        <button class="modal-close-btn" onclick="closeEditModal()"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-form" onsubmit="submitEditProperty(event)" novalidate>
+          <input type="hidden" id="edit-id" />
+          <div class="form-grid">
+            <div class="form-group form-full">
+              <label class="form-label">Property Title <span class="req">*</span></label>
+              <input type="text" class="form-control" id="edit-title" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Type <span class="req">*</span></label>
+              <select class="form-control" id="edit-type" required>
+                <option value="Land">Land / Plot</option>
+                <option value="House">House / Villa</option>
+                <option value="Building">Building</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location <span class="req">*</span></label>
+              <select class="form-control" id="edit-location" required>
+                <option value="tirupati">Tirupati</option>
+                <option value="srikalahasti">Srikalahasti</option>
+                <option value="venkatagiri">Venkatagiri</option>
+                <option value="renigunta">Renigunta</option>
+                <option value="chandragiri">Chandragiri</option>
+                <option value="yerpedu">Yerpedu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Area</label>
+              <input type="text" class="form-control" id="edit-area" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price</label>
+              <input type="text" class="form-control" id="edit-price" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price in Lakhs</label>
+              <input type="number" class="form-control" id="edit-price-num" step="0.5" />
+            </div>
+            <div class="form-group form-full">
+              <label class="form-label">Description</label>
+              <textarea class="form-control form-textarea" id="edit-description"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Contact</label>
+              <input type="text" class="form-control" id="edit-contact" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Maps URL</label>
+              <input type="text" class="form-control" id="edit-map" />
+            </div>
+            <div class="form-group form-full">
+              <div class="featured-toggle-wrap" style="margin:0;">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="edit-featured" />
+                  <span class="toggle-slider"></span>
+                </label>
+                <div><strong>Featured Property</strong><p>Show on homepage</p></div>
+              </div>
+            </div>
+            <div class="form-group form-full">
+              <label class="form-label">Replace Photo <small>(optional)</small></label>
+              <div class="file-drop-zone" id="edit-photo-drop" onclick="document.getElementById('edit-photo').click()">
+                <i class="fa fa-camera"></i>
+                <p>Click to replace image</p>
+                <div class="file-preview" id="edit-photo-preview" style="display:none;">
+                  <img id="edit-photo-preview-img" src="" alt="" />
+                </div>
+              </div>
+              <input type="file" id="edit-photo" hidden accept="image/*" onchange="onEditPhotoChange(this)" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+            <button type="submit" class="btn-primary"><i class="fa fa-save"></i> Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================
+       DELETE CONFIRM MODAL
+       ============================== -->
+  <div class="modal-overlay hidden" id="delete-modal">
+    <div class="modal delete-modal">
+      <div class="delete-icon"><i class="fa fa-trash-alt"></i></div>
+      <h2>Delete Property?</h2>
+      <p id="delete-modal-msg">This action cannot be undone.</p>
+      <div class="modal-footer" style="justify-content:center; gap:12px;">
+        <button class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn-danger" id="confirm-delete-btn" onclick="confirmDelete()"><i class="fa fa-trash"></i> Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast hidden" id="toast">
+    <i class="fa fa-check-circle" id="toast-icon"></i>
+    <span id="toast-msg">Done!</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>
